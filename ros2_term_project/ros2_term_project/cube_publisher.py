@@ -18,7 +18,7 @@ class CubePublisher(Node):  # Node 상속
         # Timer 객체 생성
         self.timer = self.create_timer(timer_period, self.timer_callback)
         # 선속도 인스턴스 변수 정의
-        self.current_linear_x = -1.0
+        self.current_linear_y = 1.0
         # 방향 전환을 위한 별도의 스레드
         self.thread = Thread(target=self.turn_cube, daemon=True)
         self.thread.start()
@@ -26,15 +26,15 @@ class CubePublisher(Node):  # Node 상속
     # Timer 콜백 메서드 정의
     def timer_callback(self):
         msg = Twist()   # Twist 객체 생성
-        msg.linear.x = float(self.current_linear_x) # 선속도 할당
-        self.get_logger().info('linear.x = %.3f' % msg.linear.x)    # info
+        msg.linear.y = float(self.current_linear_y) # 선속도 할당
+        self.get_logger().info('linear.y = %.3f' % msg.linear.y)    # info
         self.publisher_.publish(msg)    # 토픽 발행
 
     # 방향 전환 메소드
     def turn_cube(self):
         while True:
             Event().wait(14.0)  # 14초마다 실행
-            self.current_linear_x = -self.current_linear_x
+            self.current_linear_y = -self.current_linear_y
             self.get_logger().info('turn success!!@')
 
 

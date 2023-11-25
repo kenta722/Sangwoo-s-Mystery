@@ -22,9 +22,9 @@ class LineFollower(Node):
         self.obstacle = obstacle
         self.stop_line_tracker= stop_line_tracker        
         self.bridge = cv_bridge.CvBridge()
-        self._subscription = self.create_subscription(Image, '/line_camera1/image_raw', self.image_callback, 10)
-        self._subscription2 = self.create_subscription(Image, '/stop_line_camera1/image_raw',self.stop_line_callback, 10)
-        self._subscription3 = self.create_subscription(LaserScan, '/scan', self.scan_callback, 10)     
+        self._subscription = self.create_subscription(Image, '/line_camera2/image_raw', self.image_callback, 10)
+        self._subscription2 = self.create_subscription(Image, '/stop_line_camera2/image_raw',self.stop_line_callback, 10)
+        self._subscription3 = self.create_subscription(LaserScan, '/scan2/scan', self.scan_callback, 10)     
         self._publisher = self.create_publisher(Twist, 'cmd_vel', 1)
         self.twist = Twist()
         self.twist.linear.x = 3.3

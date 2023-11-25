@@ -552,7 +552,7 @@
 			<mass>0.035</mass>
 		</inertial>
 
-		<pose>-0.75 -2 0.5 0 0.15 4.0</pose>
+		<pose>-0.75 -2 0.5 0 0.1 4.0</pose>
 		<sensor name="camera1" type="camera">
 			<always_on>true</always_on>
 			<visualize>true</visualize>
