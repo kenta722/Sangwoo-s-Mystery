@@ -32,7 +32,7 @@ class LineFollower2(Node):
         self.count = 0
         self.start_time = time.time()  # 시작 시간 저장
         self.timer = None  # 타이머 변수 추가
-        self.set_timer(32, self.first_decrease_speed)
+        self.set_timer(35, self.first_decrease_speed)
         self.sensorFlag = False
                 
     def scan_callback(self, msg: LaserScan):
@@ -54,7 +54,7 @@ class LineFollower2(Node):
     def stop_line_callback(self, msg: Image):
         img = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
         self.stop_line_tracker.stop_line_callback(img)                                   
-        if self.stop_line_tracker.stop_line_mask is not None and np.any(self.stop_line_tracker.stop_line_mask == 255):
+        if self.stop_line_tracker.stop_line_mask is not None and np.any(self.stop_line_tracker.stop_line_mask >= 230):
 
             if self.sensorFlag == False:
                 self.count += 1
@@ -135,10 +135,9 @@ class LineFollower2(Node):
 def main():
     rclpy.init()
     tracker = LineTracker()
-    stop = StopLineTracker()
     stop_tracker = StopLineTracker()
     obstacle = Obstacle()
-    follower2 = LineFollower2(tracker,stop,obstacle)
+    follower2 = LineFollower2(tracker,stop_tracker,obstacle)
     try:
         rclpy.spin(follower2)
     except KeyboardInterrupt:

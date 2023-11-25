@@ -95,7 +95,7 @@ class LineFollower(Node):
 
     def image_callback(self, msg: Image):
         img = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
-        self.line_tracker.process(img)
+        self.line_tracker.process_second(img)
         self.twist.angular.z = (-1) * self.line_tracker._delta / 250
         self._publisher.publish(self.twist)
 

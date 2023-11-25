@@ -676,7 +676,7 @@
 			
 			<plugin name="stop_line_camera2" filename="libgazebo_ros_camera.so">
 			<ros>
-			    <!--<namespace>PR001</namespace>-->
+			    <!--<namespace>PR002</namespace>-->
 			    <remapping>image_raw:=image_demo</remapping>
 			    <remapping>camera_info:=camera_info_demo</remapping>
 			</ros>
